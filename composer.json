@@ -1,0 +1,27 @@
+{
+    "name": "ekojs/oauth2helper",
+    "description": "Helper function for oauth2",
+    "type": "library",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Eko Junaidi Salam",
+            "email": "eko_junaidisalam@live.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "files": ["src/oauth2helper.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EJSHelper\\Tests\\": "tests/"
+        }
+    }
+}
