@@ -1,5 +1,4 @@
 composer.lock
 vendor/
-tests/
 build/
 .phpunit.result.cache
