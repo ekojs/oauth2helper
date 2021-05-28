@@ -23,11 +23,35 @@ class HelperTest extends TestCase {
     }
 
     /**
+     * @group state
+     */
+    public function testGenerateState(): void
+    {
+        $this->assertStringMatchesFormat('%x', state());
+    }
+
+    /**
+     * @group codechal
+     */
+    public function testGenerateCodeChallenge(): void
+    {
+        $this->assertIsArray(codeChallenge());
+    }
+
+    /**
      * @group codechal
      */
     public function testCodeChallenge(): void
     {
         list($code,$chal) = codeChallenge("dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk");
         $this->assertEquals("E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM",$chal);
+    }
+
+    /**
+     * @group codechal
+     */
+    public function testFailedCodeChallenge(): void
+    {
+        $this->assertNull(codeChallenge("dBjftJ@Z4CVP#mB92K27uhbUJU1p1r_wW1gFWFOEjXk"));
     }
 }

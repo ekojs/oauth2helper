@@ -6,11 +6,13 @@ php:
   - 8.0
 
 before_script:
+  - pecl install pcov
   - composer install
+  # - echo $REPO_TOKEN >> .coveralls.yml
 
 script:
   - mkdir -p build/logs
   - php vendor/bin/phpunit -c phpunit.xml --testdox tests
 
 after_script:
-  - php vendor/bin/coveralls -v
+  - php vendor/bin/php-coveralls -v

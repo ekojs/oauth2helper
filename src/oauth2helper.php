@@ -6,7 +6,9 @@
  * OAUTH2 Helper Library
  */
 
+// @codeCoverageIgnoreStart
 if (!function_exists('base64url_encode')) {
+// @codeCoverageIgnoreEnd
 
     /**
      * Encode string to Base 64 Url Encode.
@@ -19,7 +21,9 @@ if (!function_exists('base64url_encode')) {
 
 }
 
+// @codeCoverageIgnoreStart
 if (!function_exists('base64url_decode')) {
+// @codeCoverageIgnoreEnd
 
     /**
      * Decode Base 64 Url to string.
@@ -32,7 +36,9 @@ if (!function_exists('base64url_decode')) {
 
 }
 
+// @codeCoverageIgnoreStart
 if (!function_exists('state')) {
+// @codeCoverageIgnoreEnd
 
     /**
      * Generate random state.
@@ -45,7 +51,9 @@ if (!function_exists('state')) {
 
 }
 
+// @codeCoverageIgnoreStart
 if (!function_exists('codeChallenge')) {
+// @codeCoverageIgnoreEnd
 
     /**
      * Generate code_verifier and code_challenge for rfc7636 PKCE.
@@ -53,7 +61,7 @@ if (!function_exists('codeChallenge')) {
      *
      * @return array [code_verifier,code_challenge].
      */
-    function codeChallenge(?string $code_verifier=null): array {
+    function codeChallenge(?string $code_verifier=null): ?array {
         $gen = function(){
             $strings = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
             $length = random_int(43,128);
@@ -65,7 +73,7 @@ if (!function_exists('codeChallenge')) {
         $code = $code_verifier ?? implode("",iterator_to_array($gen()));
 
         if(!preg_match('/[A-Za-z0-9-._~]{43,128}/',$code)){
-            return false;
+            return null;
         }
 
         return [$code,base64url_encode(pack('H*', hash("sha256",$code)))];
